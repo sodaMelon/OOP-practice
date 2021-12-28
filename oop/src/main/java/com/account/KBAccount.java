@@ -22,6 +22,7 @@ public class KBAccount extends Log implements IAccount{
     }
 
     public void print(){
+        super.print();
         System.out.println("잔고:" + balance);
     }
 

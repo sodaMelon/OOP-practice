@@ -2,9 +2,13 @@ package com.account;
 
 public class AccountTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		int mode = 1; //0: 우리은행 , 1: KB은행
+		String baseClass="com.account.KBAccount"; //리플렉션 (절대경로 사용)
 		IAccount bank;
+
+		Class cls = Class.forName(baseClass);
+		bank =  (IAccount) cls.newInstance();
 
 		//generate new object
 		if (mode == 0 ) {
@@ -14,7 +18,8 @@ public class AccountTest {
 		
 		//biz logic
 		bank.deposit(10000);
-		//형변환 해서 출력가능 ((kbaccount)bank)).print();
+
+		((KBAccount) bank).print();
 		try {
 			bank.withdraw(5000);
 		} catch (Exception e) {
