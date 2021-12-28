@@ -14,7 +14,7 @@ public class AccountTest {
 		
 		//biz logic
 		bank.deposit(10000);
-		
+		//형변환 해서 출력가능 ((kbaccount)bank)).print();
 		try {
 			bank.withdraw(5000);
 		} catch (Exception e) {
