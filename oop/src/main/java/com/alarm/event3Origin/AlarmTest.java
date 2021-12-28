@@ -27,6 +27,18 @@ public class AlarmTest {
             }
         });
 
+        service.add(new IAlarmTime() {
+            @Override
+            public void time(int time) {
+                System.out.println("23시 입니다.");
+            }
+
+            @Override  //익명클래스 구현 아키텍쳐(안드로이드쪽에서 많이씀) :이경우는 인터페이스
+            public int value() {
+                return 23; //22시에 알림
+            }
+        });
+
         service.run();
     }
 }
