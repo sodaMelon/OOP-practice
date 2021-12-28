@@ -1,6 +1,7 @@
 package com.alarm.event3Origin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 // 알람 시간별 기능 분할
 public class AlarmTest {
@@ -9,44 +10,68 @@ public class AlarmTest {
 
         AlarmService service = new AlarmService();
 
-        service.add(10, new IAlarmTime() {
-            public void time(int time) {
-                System.out.println("10시 입니다.");
-            }
-        });
 
-        service.add(12, new IAlarmTime() {
-            public void time(int time) {
-                System.out.println("12시 입니다.");
-            }
-        });
 
-        service.add(22, new IAlarmTime() {
+        service.add(  new BasicAlarm());
+        service.add(  new AdvnacedAlarm());
+
+        service.add(new IAlarmTime() {
+            @Override
             public void time(int time) {
                 System.out.println("22시 입니다.");
+            }
+
+            @Override
+            public int value() {
+                return 22; //22시에 알림
             }
         });
 
         service.run();
+    }
+}
 
+class BasicAlarm implements IAlarmTime {
+    @Override
+    public void time(int time) {
+        System.out.println("10시입니다");
+    }
 
+    @Override
+    public int value() {
+        return 10; //10시에 실행
+    }
+}
 
+class AdvnacedAlarm implements IAlarmTime {
+    @Override
+    public void time(int time) {
+        System.out.println("12시입니다");
+    }
 
+    @Override
+    public int value() {
+        return 12; //12시에 실행
     }
 }
 
 interface  IAlarmTime {
     public void time(int time);
+    public int value();
 }
 
 class  AlarmService {
 
     private ArrayList<IAlarmTime> list = new ArrayList<IAlarmTime>();
-    private ArrayList<Integer> listTime = new ArrayList<Integer>(); //Todo: HashMap으로 리팩토링
+    private ArrayList<Integer> listTime = new ArrayList<Integer>();
 
-    public void add(int time, IAlarmTime alarmTime) {
+    //private HashMap<Integer, IAlarmTime>  tasks = new HashMap<Integer, IAlarmTime>();
+
+    public void add(IAlarmTime alarmTime) {
         list.add(alarmTime);
-        listTime.add(time);
+        listTime.add(alarmTime.value());
+        //tasks.put(time, alarmTime  );
+
     }
 
     public  void run() throws InterruptedException {
@@ -69,7 +94,7 @@ class  AlarmService {
                 Thread.sleep(100);
 
                 for(int  i = 0 ;i  < list.size(); i++) {
-                    if ( time == listTime.get(i) )
+                    if ( time == list.get(i).value() )
                         list.get(i).time(time);
                 }
                 /*
