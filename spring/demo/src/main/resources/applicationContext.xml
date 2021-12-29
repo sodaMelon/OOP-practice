@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id ="p1" class="com.spring.demo.Person" scope="prototype">
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    ">
+
+    <context:annotation-config />
+
+    <bean id="p1" class="com.spring.demo.Person" scope="prototype">
     </bean>
 
-    <bean id ="p2" class="com.spring.demo.Person" init-method="init" destroy-method="destroy">
-        <constructor-arg value="홍길동" />
-        <constructor-arg value="80" />
+    <bean id="p2" class="com.spring.demo.Person" init-method="init" destroy-method="destroy">
+        <constructor-arg value="홍길동"/>
+        <constructor-arg value="80"/>
         <property name="hobby" value="변신술, 악당 괴롭히기"/>
     </bean>
 
-    <bean id ="opt1" class="com.spring.demo.Option">
+    <bean id="opt1" class="com.spring.demo.Option">
         <constructor-arg value="네비게이션"></constructor-arg>
     </bean>
-    <bean id ="opt2" class="com.spring.demo.Option">
+    <bean id="opt2" class="com.spring.demo.Option">
         <constructor-arg value="후방카메라2"></constructor-arg>
     </bean>
-    <bean id ="opt3" class="com.spring.demo.Option">
+    <bean id="opt3" class="com.spring.demo.Option">
         <constructor-arg value="AV 시스템"></constructor-arg>
     </bean>
     <bean id="car1" class="com.spring.demo.Car">
@@ -25,14 +34,30 @@
         <constructor-arg value="빨간색"/>
         <property name="options">
             <list>
-                <ref bean="opt1" />
-                <ref bean="opt2" />
-                <ref bean="opt3" />
+                <ref bean="opt1"/>
+                <ref bean="opt2"/>
+                <ref bean="opt3"/>
             </list>
         </property>
     </bean>
+    <bean id="car2" class="com.spring.demo.Car">
+        <constructor-arg value="그랜저"/>
+        <constructor-arg value="흰색"/>
+        <property name="options">
+            <list>
+                <ref bean="opt1"/>
+                <ref bean="opt2"/>
+                <ref bean="opt3"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="svr" class="com.spring.demo.CarService">
+        <constructor-arg ref="car1"/>
+    </bean>
+    <bean id="svr2" class="com.spring.demo.CarServiceBad">
+        <constructor-arg ref="car1"/>
+    </bean>
 
-
-
+    <bean id="svr3" class="com.spring.demo.CarServiceAuto"/>
 
 </beans>
