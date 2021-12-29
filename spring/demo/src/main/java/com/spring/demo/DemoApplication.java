@@ -47,7 +47,7 @@ public class DemoApplication {
         //svr.setCar(car1);// 2. use method */
 
         System.out.println("---------------------------");
-        ICarService svr = (ICarService) context.getBean("svr"); //3. xml에 실제 구현체 등록 (interface는 안됨!)
+        ICarService svr = (ICarService) context.getBean("svr2"); //3. xml에 실제 구현체 등록 (interface는 안됨!)
         // svr.washing();
         svr.coloring("금색");
         System.out.println(svr);
