@@ -1,50 +1,23 @@
 package com.spring.demo;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 @SpringBootApplication
 public class DemoApplication {
 
-	public static void main(String[] args) {
-		
-		SpringApplication.run(DemoApplication.class, args);
-		Person p = new Person();
-		System.out.println((p.toString()));	
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
 
-}
-
-
-class Person{
-	private String name;
-	private int age;
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public Person() {
-		name = "이름없음@@@";
-		age = 0;
-	}
-
-
-
-	public Person(String name, int age) {
-		super();
-		this.name = name;
-		this.age = age;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "name: " + name + "/ age" + age;
-	}
+        AbstractApplicationContext context =
+                new GenericXmlApplicationContext("applicationContext.xml");
+        Person new_p1 = (Person) context.getBean("p1");
+        System.out.println(new_p1);
+    }
 }
