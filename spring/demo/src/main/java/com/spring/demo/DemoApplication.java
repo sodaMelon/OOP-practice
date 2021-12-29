@@ -40,6 +40,8 @@ public class DemoApplication {
 
         System.out.println(car);
 
+        Car car1 =(Car) context.getBean("car1");
+        System.out.println(car1);
 
         context.close();
     }
