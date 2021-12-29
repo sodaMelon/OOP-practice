@@ -37,6 +37,7 @@ public class WebController {
     public String movie2(Model model) {
         Movie movie = new Movie(0, "Spider man: No-way-home", "^^^");
         movie.setImg("movie1.jpg");
+        movie.setUrl("https://movie.naver.com/movie/bi/mi/basic.naver?code=208077");
 
         model.addAttribute("title", "홍길동");
         model.addAttribute("a", movie);
