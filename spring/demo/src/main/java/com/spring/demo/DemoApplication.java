@@ -31,17 +31,27 @@ public class DemoApplication {
         Person p2 =  (Person) context.getBean("p2");
         System.out.println(p2);
 /////////////////////////////////////////////////////////
-        Car car = new Car("소나타", "빨간색");
+        /*Car car = new Car("소나타", "빨간색");
         ArrayList<Option> opts = new ArrayList<Option>();
         opts.add(new Option("네비게이션"));
         opts.add(new Option("후방 카메라"));
         opts.add(new Option("AV 시스템"));
         car.setOptions(opts);
+        System.out.println(car);*/
 
-        System.out.println(car);
-
-        Car car1 =(Car) context.getBean("car1");
+/*        Car car1 =(Car) context.getBean("car1");
         System.out.println(car1);
+
+        // Classic DI
+        // CarService svr = new CarService(car1); //1. use constructor
+        //svr.setCar(car1);// 2. use method */
+
+        System.out.println("---------------------------");
+        ICarService svr = (ICarService) context.getBean("svr"); //3. xml에 실제 구현체 등록 (interface는 안됨!)
+        // svr.washing();
+        svr.coloring("금색");
+        System.out.println(svr);
+
 
         context.close();
     }

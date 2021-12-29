@@ -32,6 +32,9 @@
         </property>
     </bean>
 
+    <bean id="svr" class="com.spring.demo.CarService">
+        <constructor-arg ref="car1" />
+    </bean>
 
 
 
