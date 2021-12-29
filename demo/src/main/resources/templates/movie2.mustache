@@ -1,6 +1,8 @@
 <h1>안녕하세요 </h1>
 {{title}}
 영화정보 안내 <br>
-<h2><a href = {{a.url}}>{{a.title}}</a></h2>
-{{a.story}}
-<img src = {{a.img}} width=300>
+{{#movies}} {{!주석: for-each문}}
+    <h2><a href = {{url}}>{{title}}</a></h2>
+    {{story}}
+    <img src = {{img}} width=300>
+{{/movies}}

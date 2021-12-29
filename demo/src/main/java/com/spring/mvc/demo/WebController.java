@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+
 @Controller
 public class WebController {
 
@@ -44,6 +46,20 @@ public class WebController {
         /*Movie movie2 = new Movie(0, "Spider man: No-way-home", "^^^");
         movie2.setImg("movie1.jpg");
 */
+        return "movie2"; // movie2.jsp.. or
+    }
+
+    @GetMapping("/movie3")
+    public String movie3(Model model) {
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+        movies.add(new Movie(0, "Spider man: No-way-home", "^^^"));
+        movies.add(new Movie(0, "오징어", "----"));
+        movies.add(new Movie(0, "해피뉴이어", "###############"));
+
+        model.addAttribute("title", "홍길동");
+        model.addAttribute("movies", movies);
+
+
         return "movie2"; // movie2.jsp.. or
     }
 }
