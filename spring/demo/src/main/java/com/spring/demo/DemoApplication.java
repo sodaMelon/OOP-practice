@@ -9,6 +9,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
+import java.util.ArrayList;
+
 @SpringBootApplication
 public class DemoApplication {
 
@@ -26,8 +28,21 @@ public class DemoApplication {
         System.out.println(p1_2); // p1 = p1_2가 같음.. (이미 생성된 객체 다시 사용)
         if (p1 ==p1_2) System.out.println("동일주소");
         else System.out.println("다른 주소");
-
         Person p2 =  (Person) context.getBean("p2");
         System.out.println(p2);
+/////////////////////////////////////////////////////////
+        Car car = new Car("소나타", "빨간색");
+        ArrayList<Option> opts = new ArrayList<Option>();
+        opts.add(new Option("네비게이션"));
+        opts.add(new Option("후방 카메라"));
+        opts.add(new Option("AV 시스템"));
+        car.setOptions(opts);
+
+        System.out.println(car);
+
+        Car car1 =(Car) context.getBean("car1");
+        System.out.println(car1);
+
+        context.close();
     }
 }

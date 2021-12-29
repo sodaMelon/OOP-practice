@@ -5,10 +5,31 @@
     <bean id ="p1" class="com.spring.demo.Person" scope="prototype">
     </bean>
 
-    <bean id ="p2" class="com.spring.demo.Person">
+    <bean id ="p2" class="com.spring.demo.Person" init-method="init" destroy-method="destroy">
         <constructor-arg value="홍길동" />
         <constructor-arg value="80" />
         <property name="hobby" value="변신술, 악당 괴롭히기"/>
+    </bean>
+
+    <bean id ="opt1" class="com.spring.demo.Option">
+        <constructor-arg value="네비게이션"></constructor-arg>
+    </bean>
+    <bean id ="opt2" class="com.spring.demo.Option">
+        <constructor-arg value="후방카메라2"></constructor-arg>
+    </bean>
+    <bean id ="opt3" class="com.spring.demo.Option">
+        <constructor-arg value="AV 시스템"></constructor-arg>
+    </bean>
+    <bean id="car1" class="com.spring.demo.Car">
+        <constructor-arg value="소나타"/>
+        <constructor-arg value="빨간색"/>
+        <property name="options">
+            <list>
+                <ref bean="opt1" />
+                <ref bean="opt2" />
+                <ref bean="opt3" />
+            </list>
+        </property>
     </bean>
 
 
