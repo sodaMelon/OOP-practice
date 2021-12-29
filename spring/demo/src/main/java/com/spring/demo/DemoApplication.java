@@ -25,7 +25,7 @@ public class DemoApplication {
         Person p1_2 =  (Person) context.getBean("p1");
         System.out.println(p1_2); // p1 = p1_2가 같음.. (이미 생성된 객체 다시 사용)
         if (p1 ==p1_2) System.out.println("동일주소");
-        else System.out.println("다른 주소")
+        else System.out.println("다른 주소");
 
         Person p2 =  (Person) context.getBean("p2");
         System.out.println(p2);
