@@ -2,8 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id ="p1" class="com.spring.demo.Person" scope="prototype"></bean>
-    <bean id ="p2" class="com.spring.demo.Person"></bean>
+    <bean id ="p1" class="com.spring.demo.Person" scope="prototype">
+    </bean>
+
+    <bean id ="p2" class="com.spring.demo.Person">
+        <constructor-arg value="홍길동" />
+        <constructor-arg value="80" />
+        <property name="hobby" value="변신술, 악당 괴롭히기"/>
+    </bean>
 
 
 
