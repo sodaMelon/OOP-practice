@@ -5,7 +5,7 @@
     <bean id ="p1" class="com.spring.demo.Person" scope="prototype">
     </bean>
 
-    <bean id ="p2" class="com.spring.demo.Person">
+    <bean id ="p2" class="com.spring.demo.Person" init-method="init" destroy-method="destroy">
         <constructor-arg value="홍길동" />
         <constructor-arg value="80" />
         <property name="hobby" value="변신술, 악당 괴롭히기"/>
