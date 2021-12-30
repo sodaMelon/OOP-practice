@@ -32,8 +32,8 @@ public class WebController {
     public String  main(Model model){
         ArrayList<News> db_top3 = new ArrayList<>();
         db_top3.add(db_news.get(0));
+        db_top3.add(db_news.get(1));
         db_top3.add(db_news.get(2));
-        db_top3.add(db_news.get(4));
 
         model.addAttribute("title",title); //hashmap 구조
         model.addAttribute("address", "서울시 강남구");
@@ -62,10 +62,49 @@ public class WebController {
 
     @RequestMapping(value="/add_commit")
     public String add_commit(@ModelAttribute News news){ //임시db를 ArrayList로 만들었기때문에-> id값 5부터 시작해야함!
-        news.setId(db_news.get(db_news.size()+1).getId()+1); //가장 최근에 추가된 news의 id값+1
+        news.setId(db_news.get(db_news.size()-1).getId()+1); //가장 최근에 추가된 news의 id값+1
         db_news.add(news);
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/del_commit")
+    public String del_commit(Model model, @RequestParam int id){
+        News find = null;
+        /*for(News news : db_news){
+            if (news.getId() == id) {
+                find = news;
+            }
+        }*/
+        find = db_news.stream().filter(n-> n.getId() == id).findFirst().orElse(null);
+        db_news.remove(find);
+        return "redirect:/";
+    }
+
+
+    @RequestMapping(value="/update")
+    public String readForUpdate(Model model, @RequestParam int id){
+        News find = null;
+        for(News news : db_news){
+            if (news.getId() == id) {
+                find = news;
+            }
+        }
+        model.addAttribute("news", find);
+        return "update";
+    }
+    @RequestMapping(value = "/update_commit")
+    public String update(@ModelAttribute News form){
+        News find = null;
+        for(News news : db_news){
+            if (news.getId() == form.getId()) {
+                find = news;
+            }
+        }
+        find.setTitle(form.getTitle());
+        find.setImg(form.getImg());
+        find.setContent(form.getContent());
+
+        return "redirect:/";
+    }
 }
 
