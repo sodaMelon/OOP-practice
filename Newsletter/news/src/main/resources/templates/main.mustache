@@ -1,0 +1,30 @@
+<html>
+<h1>{{title}}</h1>
+
+
+<table>
+    {{#db_top3}}  {{! list<News>}}
+        <tr>
+         <td>   <a href = "/read?id={{id}}" > <img src = {{img}} width="300" height="200" > </a > </td>
+        </tr>
+    {{/db_top3}}
+</table>
+
+<table>
+{{#db_news}}  {{! list<News>}}
+    <tr>
+        <td>{{id}}</td>
+        <td><font color = "red">{{title}}</td>
+    </tr>
+{{/db_news}}
+</table>
+
+<table>
+    <tr>
+        {{#db_banner}}
+        <td> <a href="{{url}}"><img src="{{img}}" width="100" height="70"></a> </td>
+        {{/db_banner}}
+            </tr>
+</table>
+{{address}}
+</html>
