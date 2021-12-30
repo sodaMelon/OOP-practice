@@ -2,6 +2,7 @@ package com.spring.news;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,6 +48,17 @@ public class WebController {
          News news = db_news.get(id);
          model.addAttribute("news", news);
         return "read";
+    }
+
+    @RequestMapping(value="/add")
+    public String add(){
+        return "add";
+    }
+
+    @RequestMapping(value="/add_commit")
+    public String add_commit(@ModelAttribute News news){ //임시db를 ArrayList로 만들었기때문에-> id값 5부터 시작해야함!
+        db_news.add(news);
+        return "redirect:/";
     }
 }
 
