@@ -45,8 +45,13 @@ public class WebController {
 
     @RequestMapping(value="/read")
     public String read(Model model, @RequestParam int id){
-         News news = db_news.get(id);
-         model.addAttribute("news", news);
+        News find = null;
+        for(News news : db_news){
+            if (news.getId() == id) {
+                find = news;
+            }
+        }
+        model.addAttribute("news", find);
         return "read";
     }
 
@@ -57,8 +62,10 @@ public class WebController {
 
     @RequestMapping(value="/add_commit")
     public String add_commit(@ModelAttribute News news){ //임시db를 ArrayList로 만들었기때문에-> id값 5부터 시작해야함!
+        news.setId(db_news.get(db_news.size()+1).getId()+1); //가장 최근에 추가된 news의 id값+1
         db_news.add(news);
         return "redirect:/";
     }
+
 }
 
